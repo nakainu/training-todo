@@ -1,8 +1,6 @@
 有酸素運動TODO
 ===
 
-Overview
-
 ## 詳細
 TODOアプリにより自宅でできる有酸素運動を毎日継続し、管理することで、健康管理をすることができる。
 
@@ -21,6 +19,11 @@ TODOアプリにより自宅でできる有酸素運動を毎日継続し、管�
 
 ## コードの実行手順
 ```
+$ source venv/bin/activate
+$ python3 -m venv vnev
+$ pip install -U Django==3.0.x django-debug-toolbar
+$ git clone https://github.com/nakainu/training-todo.git
+$ cd training-todo
 $ python manage.py runserver
 ```
 
