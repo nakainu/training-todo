@@ -21,6 +21,7 @@ TODOアプリにより自宅でできる有酸素運動を毎日継続し、管�
 ```
 $ source venv/bin/activate
 $ python3 -m venv vnev
+$ source venv/bin/activate
 $ pip install -U Django==3.0.x django-debug-toolbar
 $ git clone https://github.com/nakainu/training-todo.git
 $ cd training-todo
