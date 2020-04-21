@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <body>
-    <form method="POST" action="{% url 'create_account' %}">
+    <form method="POST" action="">
       {% csrf_token %}
       <label>ユーザーID</label>
       {{ form.username }}
@@ -12,7 +12,7 @@
       <label>パスワード(確認)</label>
       {{ form.password2 }}
       {{ form.password2.errors }}
-      <button type = "submit">登録</button>
+      <button type="submit">登録</button>
     </form>
   </body>
 </html>
