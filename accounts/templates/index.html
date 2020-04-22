@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <body>
+    {% if user.id  %}
+    <p>ログインしました．</p>
+    <p>こんにちは，{{ user.username }}さん</p>
+    {% else %}
+    <a href="{% url 'signup' %}">アカウント作成</a>
+    {% endif %}
+  </body>
+</html>
