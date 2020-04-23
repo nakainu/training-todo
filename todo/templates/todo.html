@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>TODO設定</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>トレーニング名</th><th>回数</th><th>終了</th>
+        </tr>
+        {% for todo in todos %}
+        <tr>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.times }}</td>
+            <td>{{ todo.complete_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
