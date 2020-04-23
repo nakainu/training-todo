@@ -5,6 +5,11 @@
     <title>TODO設定</title>
 </head>
 <body>
+    <header>
+        <a href="{% url 'todo' %}">TODO</a>
+        <a href="{% url 'todo_setting' %}">TODOの設定</a>
+        <a href="{% url 'logout' %}">ログアウトする</a>
+    </header>
     <table>
         <tr>
             <th>トレーニング名</th><th>回数</th><th>終了</th>
