@@ -7,15 +7,7 @@
 <body>
     <form method="post" action="">
     {% csrf_token %}
-        <table>
-            <tr>
-                <th>トレーニング名</th><th>回数</th>
-            </tr>
-            <tr>
-                <td>{{ form.title }}</td>
-                <td>{{ form.times }}</td>
-            </tr>
-        </table>
+    {{ form.as_table }}
     <input class="btn" type="submit" value="追加">
     </form>
 </body>
