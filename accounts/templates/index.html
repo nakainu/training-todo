@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
   <body>
+    <header>
+      <a href="{% url 'todo' %}">TODO</a>
+      <a href="{% url 'todo_setting' %}">TODOの設定</a>
+    </header>
     {% if user.id  %}
     <p>ログインしました．</p>
     <p>こんにちは，{{ user.username }}さん</p>

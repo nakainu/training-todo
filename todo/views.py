@@ -1,7 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from todo.models import Todo
 from django.contrib.auth.models import User
 from todo.forms import TodoSettingForm
+import datetime
+
+
+def todo_list(request):
+    """
+    userのtodoの全てのオブジェクトを取得して並べる．
+    """
+    todos = Todo.objects.filter(user_id = request.user.id).order_by()
+    return render(request, 'todo.html', {'todos' : todos})
+
+
+def complete(request, todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    # 現在の日時を入れる
+    todo.complete_at = datetime.datetime.now()
+    todo.save()
+    return redirect('todo')
+
+
+def uncomplete(request, todo_id):
+    # complete_atを消したい
+    todo = Todo.objects.get(pk=todo_id)
+    todo.complete_at = None
+    return redirect('todo')
+
 
 def add_todo(request):
     """
@@ -17,6 +42,7 @@ def add_todo(request):
                 times = form.cleaned_data['times'],
                 user_id = request.user.id
             )
+        return redirect('todo')
     else:   
         form = TodoSettingForm()
     return render(request, 'todo_setting.html', {'form': form})
