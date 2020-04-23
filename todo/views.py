@@ -23,6 +23,8 @@ def complete(request, todo_id):
 
 def uncomplete(request, todo_id):
     # complete_atを消したい
+    todo = Todo.objects.get(pk=todo_id)
+    todo.complete_at = None
     return redirect('todo')
 
 
