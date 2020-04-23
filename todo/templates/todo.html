@@ -13,7 +13,13 @@
         <tr>
             <td>{{ todo.title }}</td>
             <td>{{ todo.times }}</td>
-            <td>{{ todo.complete_at }}</td>
+            <td>
+                {% if todo.complete_at == null %}
+                    <a href="{% url 'complete' todo.id %}">{{ todo.complete_at }}</a>
+                {% else %}
+                    <a href="{% url 'uncomplete' todo.id %}">{{ todo.complete_at }}</a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </table>
