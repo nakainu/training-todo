@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>TODO設定</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'todo' %}">TODO</a>
+        <a href="{% url 'todo_setting' %}">TODOの設定</a>
+        <a href="{% url 'logout' %}">ログアウトする</a>
+    </header>
+    {{ todo.title }}を編集しています
+    <form method="post" action="">
+        {% csrf_token %}
+        トレーニング名: <input type="text" placeholder="{{ todo.title }}" value="{{ todo.title }}" name="title">
+        回数: <input type="text" placeholder="{{ todo.times }}" value="{{ item.times }}" name="times">
+        <input class="btn" type="submit" value="編集">
+    </form>
+</body>
+</html>
