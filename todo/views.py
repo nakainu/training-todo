@@ -55,3 +55,25 @@ def delete(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.delete()
     return redirect('todo_setting')
+
+
+def edit(request, todo_id):
+    """
+    編集機能．
+    idと一致したレコードの編集をする．
+    """
+    if request.method == 'POST':
+        todo = Todo.objects.get(pk=todo_id)
+        # instance引数にモデルインスタンスを指定
+        form = TodoSettingForm(request.POST or None, instance=todo)
+
+        if form.is_valid():
+            # 保存前のModelインスタンスを取得
+            todo = form.save(commit=False)
+            todo.title = form.cleaned_data['title']
+            todo.times = form.cleaned_data['times']
+            form.save()
+            return redirect('todo_setting')
+    else:
+        todo = Todo.objects.get(pk=todo_id)
+        return render(request, 'edit.html', {'todo': todo})
