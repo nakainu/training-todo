@@ -22,7 +22,7 @@
                 {% if todo.complete_at == null %}
                     <a href="{% url 'complete' todo.id %}">{{ todo.complete_at }}</a>
                 {% else %}
-                    <a href="{% url 'uncomplete' todo.id %}">{{ todo.complete_at }}</a>
+                    {{ todo.complete_at }}
                 {% endif %}
             </td>
         </tr>
