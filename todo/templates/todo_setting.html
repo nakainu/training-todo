@@ -18,6 +18,7 @@
         <tr>
             <td>{{ todo.title }}</td>
             <td>{{ todo.times }}</td>
+            <td><a href="{% url 'delete' todo.id %}">削除</a></td>
         </tr>
         {% endfor %}
     </table>

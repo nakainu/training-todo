@@ -45,3 +45,13 @@ def add_todo(request):
     # userのtodoの全てのオブジェクトを取得して並べる．
     todos = Todo.objects.filter(user_id = request.user.id).order_by()
     return render(request, 'todo_setting.html', {'form': form, 'todos' : todos})
+
+
+def delete(request, todo_id):
+    """
+    削除機能．
+    idと一致したレコードの削除をする．
+    """
+    todo = Todo.objects.get(pk=todo_id)
+    todo.delete()
+    return redirect('todo_setting')
