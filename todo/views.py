@@ -14,17 +14,13 @@ def todo_list(request):
 
 
 def complete(request, todo_id):
+    """
+    complete_atに日時を入れる.
+    """
     todo = Todo.objects.get(pk=todo_id)
     # 現在の日時を入れる
     todo.complete_at = datetime.datetime.now()
     todo.save()
-    return redirect('todo')
-
-
-def uncomplete(request, todo_id):
-    # complete_atを消したい
-    todo = Todo.objects.get(pk=todo_id)
-    todo.complete_at = None
     return redirect('todo')
 
 
@@ -42,7 +38,10 @@ def add_todo(request):
                 times = form.cleaned_data['times'],
                 user_id = request.user.id
             )
-        return redirect('todo')
+        return redirect('todo_setting')
     else:   
         form = TodoSettingForm()
-    return render(request, 'todo_setting.html', {'form': form})
+
+    # userのtodoの全てのオブジェクトを取得して並べる．
+    todos = Todo.objects.filter(user_id = request.user.id).order_by()
+    return render(request, 'todo_setting.html', {'form': form, 'todos' : todos})
