@@ -8,24 +8,26 @@
     <header>
         <a href="{% url 'todo' %}">TODO</a>
         <a href="{% url 'todo_setting' %}">TODOの設定</a>
+        <a href="{% url 'record' %}">TODOの記録</a>
         <a href="{% url 'logout' %}">ログアウトする</a>
     </header>
     <table>
         <tr>
-            <th>トレーニング名</th><th>回数</th><th>終了</th>
+            <th>トレーニング名</th><th>回数</th><th></th>
         </tr>
         {% for todo in todos %}
+        {% if todo.complete_at != null %}
+        {% else %}
         <tr>
             <td>{{ todo.title }}</td>
             <td>{{ todo.times }}</td>
             <td>
-                {% if todo.complete_at == null %}
-                    <a href="{% url 'complete' todo.id %}">{{ todo.complete_at }}</a>
-                {% else %}
-                    {{ todo.complete_at }}
-                {% endif %}
+                <a href="{% url 'complete' todo.id %}">
+                    <button type="button">終了</button>
+                </a>
             </td>
         </tr>
+        {% endif %}
         {% endfor %}
     </table>
 </body>
