@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from todo.models import Todo
+from todo.models import Todo, Record
 from django.contrib.auth.models import User
 from todo.forms import TodoSettingForm
 import datetime
@@ -21,6 +21,12 @@ def complete(request, todo_id):
     # 現在の日時を入れる
     todo.complete_at = datetime.datetime.now()
     todo.save()
+    record = Record.objects.create(
+        title = todo.title,
+        times = todo.times,
+        complete_at = todo.complete_at,
+        user_id = todo.user_id
+    )
     return redirect('todo')
 
 
@@ -77,3 +83,12 @@ def edit(request, todo_id):
     else:
         todo = Todo.objects.get(pk=todo_id)
         return render(request, 'edit.html', {'todo': todo})
+
+    
+def record(request):
+    """
+    記録機能．
+    complete_atがnull以外のカラムを全て表示．
+    """
+    complete_todos = Record.objects.filter(user_id = request.user.id).order_by()
+    return render(request, 'record.html', {'todos' : complete_todos})
