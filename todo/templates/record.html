@@ -13,21 +13,15 @@
     </header>
     <table>
         <tr>
-            <th>トレーニング名</th><th>回数</th>
+            <th>トレーニング名</th><th>回数</th><th>終了日時</th>
         </tr>
         {% for todo in todos %}
         <tr>
             <td>{{ todo.title }}</td>
             <td>{{ todo.times }}</td>
-            <td><a href="{% url 'edit' todo.id %}">編集</a></td>
-            <td><a href="{% url 'delete' todo.id %}">削除</a></td>
+            <td>{{ todo.complete_at }}</td>
         </tr>
         {% endfor %}
     </table>
-    <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <input class="btn" type="submit" value="追加">
-    </form>
 </body>
 </html>
