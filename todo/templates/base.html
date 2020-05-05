@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'todo' %}">TODO</a>
+        <a href="{% url 'todo_setting' %}">TODOの設定</a>
+        <a href="{% url 'record' %}">TODOの記録</a>
+        <a href="{% url 'logout' %}">ログアウトする</a>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
