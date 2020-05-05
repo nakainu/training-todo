@@ -1,34 +1,23 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>TODO設定</title>
-</head>
-<body>
-    <header>
-        <a href="{% url 'todo' %}">TODO</a>
-        <a href="{% url 'todo_setting' %}">TODOの設定</a>
-        <a href="{% url 'record' %}">TODOの記録</a>
-        <a href="{% url 'logout' %}">ログアウトする</a>
-    </header>
-    <table>
-        <tr>
-            <th>トレーニング名</th><th>回数</th><th></th>
-        </tr>
-        {% for todo in todos %}
-        {% if todo.complete_at != null %}
-        {% else %}
-        <tr>
-            <td>{{ todo.title }}</td>
-            <td>{{ todo.times }}</td>
-            <td>
-                <a href="{% url 'complete' todo.id %}">
-                    <button type="button">終了</button>
-                </a>
-            </td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}{{ 'TODO' }}{% endblock %}
+{% block content %}
+<table>
+    <tr>
+        <th>トレーニング名</th><th>回数</th><th></th>
+    </tr>
+    {% for todo in todos %}
+    {% if todo.complete_at != null %}
+    {% else %}
+    <tr>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.times }}</td>
+        <td>
+            <a href="{% url 'complete' todo.id %}">
+                <button type="button">終了</button>
+            </a>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% endblock %}
