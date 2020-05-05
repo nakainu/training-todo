@@ -5,7 +5,7 @@
 <form method="post" action="">
     {% csrf_token %}
     トレーニング名: <input type="text" placeholder="{{ todo.title }}" value="{{ todo.title }}" name="title">
-    回数: <input type="text" placeholder="{{ todo.times }}" value="{{ item.times }}" name="times">
+    回数: <input type="text" placeholder="{{ todo.times }}" value="{{ todo.times }}" name="times">
     <input class="btn" type="submit" value="編集">
 </form>
 {% endblock %}
